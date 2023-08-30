@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser')
 const petsRoute = require('./Routes/petsRoute')
 const usersRoute = require('./Routes/usersRoute')
 
-app.use(cors({ origin: ['http://localhost:3000', 'https://petadoptfrontend.vercel.app/'], credentials: true }))
+app.use(cors({ origin: ['http://localhost:3000', 'https://petadoptfrontend.vercel.app'], credentials: true }))
 app.use(cookieParser())
 app.use(express.json())
 
