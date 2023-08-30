@@ -35,7 +35,8 @@ async function login(req, res) {
 
       if (result) {
         const token = jwt.sign({ id: user.id, isAdmin: user.isAdmin }, process.env.TOKEN_KEY, { expiresIn: "2h" });
-        res.cookie('token', token, { maxAge: 7200000, httpOnly: true })
+        res.cookie('token', token, { maxAge: 7200000, httpOnly: true, sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production" ? true : false, })
         res.send({ ok: true, userId: user.id })
       }
     });
