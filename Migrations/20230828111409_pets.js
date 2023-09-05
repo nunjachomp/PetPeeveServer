@@ -14,6 +14,8 @@ exports.up = function(knex) {
         table.timestamp("createdDate").defaultTo(knex.fn.now());
         table.string("userId").notNull();
         table.string("petImage");
+        table.string("adoptedById");
+        table.string("fosteredById");
       })
     };
 

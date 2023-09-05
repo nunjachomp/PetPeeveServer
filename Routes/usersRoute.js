@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const UserController = require('../Controllers/usersController')
-const {passwordMatch, isNewUser, hashPwd, isExistingUser, auth} = require('../Middleware/usersMiddleware')
+const {passwordMatch, isNewUser, hashPwd, isExistingUser, auth, setAdmin} = require('../Middleware/usersMiddleware')
 
 
 
@@ -14,6 +14,8 @@ router.post('/login', /*validateBody(signupSchema)*/ isExistingUser, UserControl
 router.get('/user', auth, UserController.sendLoggedInUser)
 
 router.get('/check-status', auth, UserController.checkStatus)
+
+router.put('/toggleadmin', auth, UserController.toggleAdmin)
 
 
 module.exports = router

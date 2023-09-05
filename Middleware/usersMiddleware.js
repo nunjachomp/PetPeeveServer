@@ -42,6 +42,7 @@ function hashPwd(req, res, next) {
 
 function auth(req, res, next) {
   const { token } = req.cookies
+  console.log(req.cookies)
   if(!token) {
     return res.status(401).send('Token Cookie Required')
   }
@@ -66,7 +67,6 @@ function checkIfAdmin(req, res, next) {
     } else {
       res.status(403).send("Bro, you don't have Admin permissions!")
     }
-
   });
 }
 

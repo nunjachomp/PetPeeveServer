@@ -20,18 +20,31 @@ async function getUserByIdModel(id) {
 
 async function addUserModel(newUser) {
   try {
-    
     const [id] = await dbConnection('users').insert(newUser)
     return id
   } catch (err) {
     console.log(err)
   }
+}
 
+async function toggleAdminModel(id) {
+  try {
+    const users = await dbConnection('users').where({ id }).select("*")
+    if(!users[0]) {
+      throw "No Such User"
+    }
+    const user =  users[0]
+    const affectedUser = await dbConnection('users').where({ id }).update({isAdmin: user.isAdmin ? 0 : 1})
+    const updateduser = await dbConnection('users').where({ id }).select("*")
+    console.log(`Successfully toggled ${user.id} admin status`, updateduser)
+    return updateduser[0]
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 
-
-module.exports = { getUserByEmailModel, addUserModel, getUserByIdModel, getUserByIdModel }
+module.exports = { getUserByEmailModel, addUserModel, getUserByIdModel, getUserByIdModel, toggleAdminModel }
 
 
 

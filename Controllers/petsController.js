@@ -1,4 +1,4 @@
-const { getAllPetsModel, addNewPetModel, deletePetModel, getSinglePetByIdModel } = require('../Models/petsModel')
+const { getAllPetsModel, addNewPetModel, deletePetModel, getSinglePetByIdModel, adoptPetModel } = require('../Models/petsModel')
 
 async function getAllPets(req, res) {
   try {
@@ -50,4 +50,16 @@ async function getPet(req, res) {
   }
 }
 
-module.exports = { getAllPets, addPet, deletePet, getPet }
+async function adoptPetByUserID(req, res) {
+  try {
+    const isAdopt = req.body.adopt
+    const petId = req.params.id;
+    const userId = req.body.userId; 
+    await adoptPetModel(petId, userId, isAdopt)
+
+  }catch(err){
+    console.log(err)
+  }
+}
+
+module.exports = { getAllPets, addPet, deletePet, getPet, adoptPetByUserID }
