@@ -30,21 +30,28 @@ async function addUserModel(newUser) {
 async function toggleAdminModel(id) {
   try {
     const users = await dbConnection('users').where({ id }).select("*")
-    if(!users[0]) {
-      throw "No Such User"
-    }
+    if(!users[0]) {throw "No Such User"}
     const user =  users[0]
     const affectedUser = await dbConnection('users').where({ id }).update({isAdmin: user.isAdmin ? 0 : 1})
     const updateduser = await dbConnection('users').where({ id }).select("*")
-    console.log(`Successfully toggled ${user.id} admin status`, updateduser)
+    console.log(`Successfully toggled admin status for user: ${user.id} `, updateduser)
     return updateduser[0]
   } catch (err) {
     console.log(err)
   }
 }
 
+async function getAllUsersModel() {
+  try {
+    const allUsers = await dbConnection.from('users')
+    console.log(allUsers)
+    return allUsers
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-module.exports = { getUserByEmailModel, addUserModel, getUserByIdModel, getUserByIdModel, toggleAdminModel }
+module.exports = { getUserByEmailModel, addUserModel, getUserByIdModel, getUserByIdModel, toggleAdminModel, getAllUsersModel }
 
 
 

@@ -1,4 +1,4 @@
-const { addUserModel, getUserByIdModel, toggleAdminModel } = require('../Models/usersModel')
+const { addUserModel, getUserByIdModel, toggleAdminModel, getAllUsersModel } = require('../Models/usersModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
@@ -78,4 +78,15 @@ async function toggleAdmin(req, res) {
   }
 }
 
-module.exports = { signup, login, sendLoggedInUser, checkStatus, toggleAdmin }
+async function getAllUsers(req, res) {
+  try {
+    const allUsers = await getAllUsersModel()
+    console.log(allUsers)
+    res.send(allUsers)
+  } catch (err) {
+    console.log(err)
+    res.status(500).send("Error Getting Users")
+  }
+}
+
+module.exports = { signup, login, sendLoggedInUser, checkStatus, toggleAdmin, getAllUsers }
