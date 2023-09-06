@@ -44,7 +44,6 @@ async function toggleAdminModel(id) {
 async function getAllUsersModel() {
   try {
     const allUsers = await dbConnection.from('users')
-    console.log(allUsers)
     return allUsers
   } catch (err) {
     console.log(err)

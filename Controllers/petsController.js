@@ -4,7 +4,6 @@ async function getAllPets(req, res) {
   try {
     const allPets = await getAllPetsModel()
     res.send(allPets);
-    console.log(allPets)
   } catch (err) {
     console.log(err)
     res.status(500).send("Something went wrong")

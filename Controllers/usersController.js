@@ -81,7 +81,6 @@ async function toggleAdmin(req, res) {
 async function getAllUsers(req, res) {
   try {
     const allUsers = await getAllUsersModel()
-    console.log(allUsers)
     res.send(allUsers)
   } catch (err) {
     console.log(err)
