@@ -1,4 +1,4 @@
-const { addUserModel, getUserByIdModel, toggleAdminModel, getAllUsersModel } = require('../Models/usersModel')
+const { addUserModel, getUserByIdModel, toggleAdminModel, getAllUsersModel, getMyPetsByUserIdModel } = require('../Models/usersModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
@@ -88,4 +88,14 @@ async function getAllUsers(req, res) {
   }
 }
 
-module.exports = { signup, login, sendLoggedInUser, checkStatus, toggleAdmin, getAllUsers }
+async function getMyPetsByUserId(req, res, next) {
+  const userPetList = await getMyPetsByUserIdModel(req.body.userPetList)
+  if (userPetList) {
+    req.body.userPetList = userPetList
+    next()
+  } else {
+    res.status(400).send("You currently don't have any adopted pets")
+  }
+}
+
+module.exports = { signup, login, sendLoggedInUser, checkStatus, toggleAdmin, getAllUsers, getMyPetsByUserId }

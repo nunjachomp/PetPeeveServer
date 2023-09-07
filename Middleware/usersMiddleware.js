@@ -1,4 +1,5 @@
 const { getUserByEmailModel } = require('../Models/usersModel')
+const { getMyPetsByUserIdModel } = require('../Models/usersModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()

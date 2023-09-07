@@ -13,13 +13,13 @@ router.post('/login', /*validateBody(signupSchema)*/ isExistingUser, UserControl
 
 router.get('/user', auth, UserController.sendLoggedInUser)
 
-// router.get('/check-status', auth, UserController.checkStatus)
 router.get('/check-status', auth,  checkIfAdmin, UserController.checkStatus)
 
 router.put('/toggleadmin', auth, checkIfAdmin, UserController.toggleAdmin)
-// router.put('/toggleadmin', auth, UserController.toggleAdmin)
 
 router.get('/', auth, UserController.getAllUsers)
+
+router.get('/user', auth, UserController.getMyPetsByUserId)
 
 
 module.exports = router

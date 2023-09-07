@@ -41,7 +41,7 @@ async function toggleAdminModel(id) {
   }
 }
 
-async function getAllUsersModel() {
+async function getAllUsersModel(id) {
   try {
     const allUsers = await dbConnection.from('users')
     return allUsers
@@ -50,7 +50,17 @@ async function getAllUsersModel() {
   }
 }
 
-module.exports = { getUserByEmailModel, addUserModel, getUserByIdModel, getUserByIdModel, toggleAdminModel, getAllUsersModel }
+async function getMyPetsByUserIdModel(userId) {
+  try {
+    const res = await dbConnection.from('pets').where({ adoptedById: userId })
+    const allPetsByUserId = res.map(pet => pet.adoptedById)
+    return allPetsByUserId
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+module.exports = { getUserByEmailModel, addUserModel, getUserByIdModel, getUserByIdModel, toggleAdminModel, getAllUsersModel, getMyPetsByUserIdModel }
 
 
 
