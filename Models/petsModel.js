@@ -41,7 +41,7 @@ const getSinglePetByIdModel = async (petId) => {
 const adoptPetModel = async (petId, userId, isAdopt) => {
   try {
   if (isAdopt) {
-  await dbConnection('pets').where({ id: petId }).update({adoptedById: userId})
+  await dbConnection('pets').where({ id: petId }).update({adoptedById: userId, fosteredById: null})
   } else {
   await dbConnection('pets').where({ id: petId }).update({adoptedById: null})
   }
@@ -50,5 +50,17 @@ const adoptPetModel = async (petId, userId, isAdopt) => {
   }
 }
 
+const fosterPetModel = async (petId, userId, isFostered) => {
+  try {
+  if (isFostered) {
+  await dbConnection('pets').where({ id: petId }).update({fosteredById: userId, adoptedById: null })
+  } else {
+  await dbConnection('pets').where({ id: petId }).update({fosteredById: null})
+  }
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-module.exports = { getAllPetsModel, addNewPetModel, deletePetModel, getSinglePetByIdModel, adoptPetModel }
+
+module.exports = { getAllPetsModel, addNewPetModel, deletePetModel, getSinglePetByIdModel, adoptPetModel, fosterPetModel }

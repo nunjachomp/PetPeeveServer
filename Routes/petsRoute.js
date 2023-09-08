@@ -16,7 +16,7 @@ router.post('/', upload.single('petImage'), auth, PetsContoller.addPet);
 
 router.put('/:id/adopt', auth, PetsContoller.adoptPetByUserID);
 
-
+router.put('/:id/foster', auth, PetsContoller.fosterPetByUserID);
 
 // DELETE
 router.delete('/:id', auth, PetsContoller.deletePet);
