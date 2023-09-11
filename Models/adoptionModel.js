@@ -1,11 +1,9 @@
 const dbConnection = require('../knex/knex')
 
 
-const savePetModel = async (userId, petId, isSaved) => {
-    try {
-      if(isSaved) {
-    await dbConnection('adoption').insert({petId: petId, userId: userId})
-    }
+const savePetModel = async (userId, petId) => {
+    try {   
+    await dbConnection('adoption').insert({userId, petId})
     } catch (err) {
       console.log(err)
     }

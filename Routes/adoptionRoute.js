@@ -5,6 +5,6 @@ const { auth } = require('../Middleware/usersMiddleware')
 
 
 
-router.post('/:id/save', auth, AdoptionContoller.savePetByUserID);
+router.post('/save', auth, AdoptionContoller.savePetByUserID);
 
 module.exports = router
