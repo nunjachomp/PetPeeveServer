@@ -73,4 +73,5 @@ async function fosterPetByUserID(req, res) {
   }
 }
 
+
 module.exports = { getAllPets, addPet, deletePet, getPet, adoptPetByUserID, fosterPetByUserID }

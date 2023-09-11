@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser')
 
 const petsRoute = require('./Routes/petsRoute')
 const usersRoute = require('./Routes/usersRoute')
+const adoptionRoute = require('./Routes/adoptionRoute')
 
 app.use(cors({ origin: ['http://localhost:3000', 'https://petadoptfrontend.vercel.app'], credentials: true }))
 app.use(cookieParser())
@@ -16,6 +17,7 @@ app.use(express.json())
 
 app.use('/pets', petsRoute)
 app.use('/users', usersRoute)
+app.use('/adoption', adoptionRoute)
 
 
 async function migrateAndListen() {

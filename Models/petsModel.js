@@ -63,4 +63,4 @@ const fosterPetModel = async (petId, userId, isFostered) => {
 }
 
 
-module.exports = { getAllPetsModel, addNewPetModel, deletePetModel, getSinglePetByIdModel, adoptPetModel, fosterPetModel }
+module.exports = { getAllPetsModel, addNewPetModel, deletePetModel, getSinglePetByIdModel, adoptPetModel, fosterPetModel, }
