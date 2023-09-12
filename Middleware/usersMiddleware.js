@@ -57,16 +57,11 @@ function auth(req, res, next) {
 
 function checkIfAdmin(req, res, next) {
   const { token } = req.cookies
-  console.log(req.cookies) //cookie has isAdmin
   jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).send('Invalid token')
     }
-    // if (decoded.isAdmin) {
-    //   req.body.isAdmin = decoded.isAdmin
     if (decoded.isAdmin === 1) {
-      console.log(decoded) //returns: { id: 1, isAdmin: 1, iat: 1694068554, exp: 1694075754 }
-      console.log(decoded.isAdmin) //returns: 1
       next()
     } else {
       res.status(403).send("Bro, you don't have Admin permissions!")

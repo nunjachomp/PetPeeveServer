@@ -4,7 +4,6 @@ async function savePetByUserID(req, res) {
     try {
       const petId = req.body.petId
       const userId = req.body.userId;
-      console.log(req.body)
       await savePetModel(userId, petId)
       res.status(200).json({ message: 'Pet saved successfully' });
     }catch(err){

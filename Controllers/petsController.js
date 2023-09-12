@@ -55,7 +55,7 @@ async function adoptPetByUserID(req, res) {
     const petId = req.params.id;
     const userId = req.body.userId; 
     await adoptPetModel(petId, userId, isAdopt)
-
+    res.send(petId, userId, isAdopt)
   }catch(err){
     console.log(err)
   }
@@ -67,7 +67,7 @@ async function fosterPetByUserID(req, res) {
     const petId = req.params.id;
     const userId = req.body.userId; 
     await fosterPetModel(petId, userId, isFostered)
-
+    res.send(petId, userId, isFostered)
   }catch(err){
     console.log(err)
   }
