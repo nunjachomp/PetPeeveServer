@@ -3,8 +3,10 @@ const { savePetModel, getMySavedPetsByIdModel } = require('../Models/adoptionMod
 async function savePetByUserID(req, res) {
     try {
       const petId = req.body.petId
+      const name = req.body.name
+      const petImage = req.body.petImage
       const userId = req.body.userId;
-      await savePetModel(userId, petId)
+      await savePetModel(userId, petId, name, petImage)
       res.status(200).json({ message: 'Pet saved successfully' });
     }catch(err){
       console.log(err)

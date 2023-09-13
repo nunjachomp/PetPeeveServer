@@ -3,6 +3,8 @@ exports.up = function(knex) {
     table.increments('id').primary();
     table.integer('userId').unsigned();
     table.integer('petId').unsigned();
+    table.string('name');
+    table.string('petImage');
     table.foreign('userId').references('users.id');
     table.foreign('petId').references('pets.id');
     })
