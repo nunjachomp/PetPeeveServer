@@ -1,4 +1,4 @@
-const { savePetModel } = require('../Models/adoptionModel')
+const { savePetModel, getMySavedPetsByIdModel } = require('../Models/adoptionModel')
 
 async function savePetByUserID(req, res) {
     try {
@@ -12,4 +12,14 @@ async function savePetByUserID(req, res) {
     }
   }
 
-  module.exports = { savePetByUserID }
+  async function getMySavedPetsByUserId(req, res) {
+    try {
+      const savedPets = await getMySavedPetsByIdModel();
+      res.send(savedPets)
+    } catch(err){
+      res.status(500).send("Something went wrong")
+    }
+  }
+  
+
+  module.exports = { savePetByUserID, getMySavedPetsByUserId }

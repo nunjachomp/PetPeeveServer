@@ -9,4 +9,13 @@ const savePetModel = async (userId, petId) => {
     }
   }
 
-  module.exports = { savePetModel }
+  async function getMySavedPetsByIdModel() {
+    try {
+     const savedPets = await dbConnection.from('adoption')
+     return savedPets
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  module.exports = { savePetModel, getMySavedPetsByIdModel }
