@@ -1,4 +1,4 @@
-const { savePetModel, getMySavedPetsByIdModel } = require('../Models/adoptionModel')
+const { savePetModel, getMySavedPetsByIdModel, deleteSavedPetModel } = require('../Models/adoptionModel')
 
 async function savePetByUserID(req, res) {
     try {
@@ -22,6 +22,21 @@ async function savePetByUserID(req, res) {
       res.status(500).send("Something went wrong")
     }
   }
+
+  async function deleteSavedPet(req, res) {
+    try {
+      const savedPetToDelete = req.params.id;
+      const isDeleted = await deleteSavedPetModel(savedPetToDelete)
+      if (isDeleted) {
+        res.send({ ok: true })
+      } else {
+        res.send({ ok: false })
+      }
+    } catch (err) {
+      console.log(err)
+      res.status(500).send("Something went wrong")
+    }
+  }
   
 
-  module.exports = { savePetByUserID, getMySavedPetsByUserId }
+  module.exports = { savePetByUserID, getMySavedPetsByUserId, deleteSavedPet }

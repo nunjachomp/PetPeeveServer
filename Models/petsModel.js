@@ -23,7 +23,6 @@ const deletePetModel = async (petId) => {
   try {
     const deletedPet = await dbConnection('pets').where({ id: petId }).del()
     return deletedPet
-
   } catch (err) {
     console.log(err, "Hmm...what are you trying to do???")
   }

@@ -18,4 +18,13 @@ const savePetModel = async (userId, petId, name, petImage) => {
     }
   }
 
-  module.exports = { savePetModel, getMySavedPetsByIdModel }
+  const deleteSavedPetModel = async (petId) => {
+    try {
+      const deleteSavedPet = await dbConnection('adoption').where({ id: petId }).del()
+      return deleteSavedPet
+    } catch (err) {
+      console.log(err, "Hmm...what are you trying to do???")
+    }
+  }
+
+  module.exports = { savePetModel, getMySavedPetsByIdModel, deleteSavedPetModel }

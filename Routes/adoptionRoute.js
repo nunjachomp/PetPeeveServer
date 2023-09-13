@@ -9,4 +9,6 @@ router.post('/save', auth, AdoptionContoller.savePetByUserID);
 
 router.get('/savedpets', auth, AdoptionContoller.getMySavedPetsByUserId)
 
+router.delete('/:id', auth, AdoptionContoller.deleteSavedPet);
+
 module.exports = router
