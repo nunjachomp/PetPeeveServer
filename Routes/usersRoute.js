@@ -6,10 +6,9 @@ const {passwordMatch, isNewUser, hashPwd, isExistingUser, auth, checkIfAdmin} = 
 
 
 
-// CREATE
-router.post('/signup', /*validateBody(signupSchema)*/ passwordMatch, isNewUser, hashPwd, UserController.signup);
+router.post('/signup', passwordMatch, isNewUser, hashPwd, UserController.signup);
 
-router.post('/login', /*validateBody(signupSchema)*/ isExistingUser, UserController.login);
+router.post('/login', isExistingUser, UserController.login);
 
 router.get('/user', auth, UserController.sendLoggedInUser)
 
